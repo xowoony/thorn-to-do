@@ -13,13 +13,13 @@ import { useForm } from "react-hook-form";
 //     setToDo(value);
 //   };
 
-//   const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//     event.preventDefault();
-//     if (toDo.length < 10) {
-//       return setToDoError("To do should be longer~~");
-//     }
-//     console.log("submit");
-//   };
+// const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+//   event.preventDefault();
+//   if (toDo.length < 10) {
+//     return setToDoError("To do should be longer~~");
+//   }
+//   console.log("submit");
+// };
 
 //   return (
 //     <div>
@@ -42,19 +42,27 @@ function ToDoList() {
   // setState도 필요없음
   // useForm 함수는 많은 것들을 제공함. 그 중 하나는 watch이다.
   // watch는 form의 입력값들의 변화를 관찰 할 수 있게 해주는 함수이다.
-  const { register, watch } = useForm();
-  console.log(watch());
+  // onValid 만약 데이터가 유효하지 않다면 useForm이 에러를 보여주게됨.
+  // onValid 함수는 react-hook-form이 모든 validation을 다 마쳤을 때만 호출될 것임
+  // form에 onSubmit을 써주고
+  const { register, handleSubmit } = useForm();
+
+  const onValid = (data: any) => {
+    console.log(data);
+  };
+
   return (
     <div>
-      <form>
+      {/*onSubmit을 써줌*/}
+      <form onSubmit={handleSubmit(onValid)}>
         <input {...register("email")} placeholder="email을 입력해주세요." />
         <input
           {...register("firstname")}
           placeholder="firstname을 입력해주세요."
         />
         <input
-          {...register("Lastname")}
-          placeholder="Lastname을 입력해주세요."
+          {...register("lastname")}
+          placeholder="lastname을 입력해주세요."
         />
         <input
           {...register("username")}
