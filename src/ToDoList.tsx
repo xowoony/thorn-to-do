@@ -54,26 +54,30 @@ function ToDoList() {
   return (
     <div>
       {/*onSubmit을 써줌*/}
+      {/* javascript로 required:true 를 주도록 한다. html로부터 보호받지 못하는 환경이 있을 수 있기 때문이다.*/}
       <form onSubmit={handleSubmit(onValid)}>
-        <input {...register("email")} placeholder="email을 입력해주세요." />
         <input
-          {...register("firstname")}
+          {...register("email", { required: true })}
+          placeholder="email을 입력해주세요."
+        />
+        <input
+          {...register("firstname", { required: true })}
           placeholder="firstname을 입력해주세요."
         />
         <input
-          {...register("lastname")}
+          {...register("lastname", { required: true })}
           placeholder="lastname을 입력해주세요."
         />
         <input
-          {...register("username")}
+          {...register("username", { required: true })}
           placeholder="username을 입력해주세요."
         />
         <input
-          {...register("password")}
+          {...register("password", { required: true })}
           placeholder="password을 입력해주세요."
         />
         <input
-          {...register("password1")}
+          {...register("password1", { required: true })}
           placeholder="password1을 입력해주세요."
         />
         <button>추가</button>
