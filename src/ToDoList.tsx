@@ -1,65 +1,39 @@
-import { useState } from "react";
 import { useForm } from "react-hook-form";
 
-// function ToDoList() {
-//   const [toDo, setToDo] = useState("");
-//   const [toDoError, setToDoError] = useState("");
-
-//   const onChange = (event: React.FormEvent<HTMLInputElement>) => {
-//     const {
-//       currentTarget: { value },
-//     } = event;
-//     setToDoError("");
-//     setToDo(value);
-//   };
-
-// const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-//   event.preventDefault();
-//   if (toDo.length < 10) {
-//     return setToDoError("To do should be longer~~");
-//   }
-//   console.log("submit");
-// };
-
-//   return (
-//     <div>
-//       <form onSubmit={onSubmit}>
-//         <input
-//           value={toDo}
-//           onChange={onChange}
-//           placeholder="오늘 해야할 일을 입력하세요"
-//         />
-//         <button>추가</button>
-//         {toDoError !== "" ? toDoError : null}
-//       </form>
-//     </div>
-//   );
-// }
+interface IForm {
+  email: string;
+  firstname: string;
+  lastname: string;
+  username: string;
+  password: string;
+  password_check: string;
+}
 
 function ToDoList() {
-  // useForm hook 사용하기
-  // register 함수사용 => onChange 이벤트 핸들러가 필요없음, onChange, value 등등 props들도 필요없어짐
-  // setState도 필요없음
-  // useForm 함수는 많은 것들을 제공함. 그 중 하나는 watch이다.
-  // watch는 form의 입력값들의 변화를 관찰 할 수 있게 해주는 함수이다.
-  // onValid 만약 데이터가 유효하지 않다면 useForm이 에러를 보여주게됨.
-  // onValid 함수는 react-hook-form이 모든 validation을 다 마쳤을 때만 호출될 것임
-  // form에 onSubmit을 써주고
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+    // setError 를 꺼냈음 (react-hook-form에서)
+    // setError는 특정한 에러를 발생키시게 해준다.
+    setError,
+  } = useForm<IForm>({
+    defaultValues: {
+      email: "@naver.com",
+    },
+  });
 
-  const onValid = (data: any) => {
-    console.log(data);
+  const onValid = (data: IForm) => {
+    if (data.password !== data.password_check) {
+      // password와 체크가 서로 일치하지 않는다면 setError
+      // setError 적고 hover 해보면 뭐 적어야 할지 타입스크립트 덕분에 알 수 있음
+      setError("password_check", {message:"패스워드가 다릅니다."})
+    }
   };
 
   console.log(errors);
   return (
     <div>
-      {/*onSubmit을 써줌*/}
-      {/* javascript로 required:true 를 주도록 한다. html로부터 보호받지 못하는 환경이 있을 수 있기 때문이다.*/}
       <form
         style={{
           display: "flex",
