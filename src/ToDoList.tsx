@@ -31,7 +31,12 @@ function ToDoList() {
     if (data.password !== data.password_check) {
       // password와 체크가 서로 일치하지 않는다면 setError
       // setError 적고 hover 해보면 뭐 적어야 할지 타입스크립트 덕분에 알 수 있음
-      setError("password_check", { message: "패스워드가 다릅니다." });
+      // shouldFocus:true 를 적어주면 비번체크가 틀렸을 경우 이곳으로 포커스가 가게 된다.
+      setError(
+        "password_check",
+        { message: "패스워드가 다릅니다." },
+        { shouldFocus: true }
+      );
     }
     // 그 외의 에러가 생겼을 경우
     setError("extraError", { message: "서버에 문제가 생겼습니다." });
@@ -59,7 +64,15 @@ function ToDoList() {
         />
         <span>{errors?.email?.message as string}</span>
         <input
-          {...register("firstname", { required: "firstname을 입력해주세요." })}
+          // 이름에 사울을 포함할 때 사용할 수 없다는 메시지가 출력되고, 
+          // 이름에 사울이 없을 경우 true를 반환.
+          {...register("firstname", {
+            required: "firstname을 입력해주세요.",
+            validate: (value) =>
+              value.includes("사울")
+                ? "사울이라는 이름은 사용할 수 없습니다."
+                : true,
+          })}
           placeholder="firstname을 입력해주세요."
         />
         <span>{errors?.firstname?.message as string}</span>
