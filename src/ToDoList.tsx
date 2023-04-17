@@ -7,6 +7,10 @@ interface IForm {
   username: string;
   password: string;
   password_check: string;
+  // 그 외 또다른 에러가 발생했을 경우를 위한
+  // 필수는 아니므로 ?를 붙여줌
+  // 글고 밑에서 if문 있는 곳에서 써줌
+  extraError?: string;
 }
 
 function ToDoList() {
@@ -27,8 +31,10 @@ function ToDoList() {
     if (data.password !== data.password_check) {
       // password와 체크가 서로 일치하지 않는다면 setError
       // setError 적고 hover 해보면 뭐 적어야 할지 타입스크립트 덕분에 알 수 있음
-      setError("password_check", {message:"패스워드가 다릅니다."})
+      setError("password_check", { message: "패스워드가 다릅니다." });
     }
+    // 그 외의 에러가 생겼을 경우
+    setError("extraError", { message: "서버에 문제가 생겼습니다." });
   };
 
   console.log(errors);
@@ -87,6 +93,7 @@ function ToDoList() {
         />
         <span>{errors?.password_check?.message as string}</span>
         <button>추가</button>
+        <span>{errors?.extraError?.message as string}</span>
       </form>
     </div>
   );
