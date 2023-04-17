@@ -64,14 +64,22 @@ function ToDoList() {
         />
         <span>{errors?.email?.message as string}</span>
         <input
-          // 이름에 사울을 포함할 때 사용할 수 없다는 메시지가 출력되고, 
+          // 이름에 사울을 포함할 때 사용할 수 없다는 메시지가 출력되고,
           // 이름에 사울이 없을 경우 true를 반환.
+          // validate는 객체로 만들어 줄 수 있음
+          // 즉 여러 확인 절차가 필요할 경우엔 객체로 만들어 주면 됨
           {...register("firstname", {
             required: "firstname을 입력해주세요.",
-            validate: (value) =>
-              value.includes("사울")
-                ? "사울이라는 이름은 사용할 수 없습니다."
-                : true,
+            validate: {
+              noSaul: (value) =>
+                value.includes("사울")
+                  ? "사울이라는 이름은 사용할 수 없습니다."
+                  : true,
+              noNick: (value) =>
+                value.includes("닉")
+                  ? "닉이라는 이름은 사용할 수 없습니다."
+                  : true,
+            },
           })}
           placeholder="firstname을 입력해주세요."
         />
