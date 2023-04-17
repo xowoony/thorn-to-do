@@ -45,15 +45,17 @@ function ToDoList() {
   // onValid 만약 데이터가 유효하지 않다면 useForm이 에러를 보여주게됨.
   // onValid 함수는 react-hook-form이 모든 validation을 다 마쳤을 때만 호출될 것임
   // form에 onSubmit을 써주고
-  const { register, handleSubmit, formState } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
   const onValid = (data: any) => {
     console.log(data);
   };
 
-  // formState를 이용하여 error 표시하기
-  console.log(formState.errors);
-
+  console.log(errors);
   return (
     <div>
       {/*onSubmit을 써줌*/}
@@ -67,14 +69,17 @@ function ToDoList() {
       >
         <input
           {...register("email", {
-            required: true,
+            required: "이메일은 필수로 작성해주셔야 합니다.",
             pattern: {
-              value: /^[A-Za-z0-9._%+-]+@naver.com$/,
-              message: "naver.com 주소만 허용됩니다.",
+              value: /^[A-Za-z0-9._%+-]+@naver\.com$/,
+              message: "오직 naver.com 주소만 허용됩니다.",
             },
           })}
           placeholder="email을 입력해주세요."
         />
+        <span>
+        {errors?.email?.message as string}
+        </span>
         <input
           {...register("firstname", { required: true })}
           placeholder="firstname을 입력해주세요."
