@@ -77,32 +77,41 @@ function ToDoList() {
           })}
           placeholder="email을 입력해주세요."
         />
-        <span>
-        {errors?.email?.message as string}
-        </span>
+        <span>{errors?.email?.message as string}</span>
         <input
-          {...register("firstname", { required: true })}
+          {...register("firstname", { required: "firstname을 입력해주세요." })}
           placeholder="firstname을 입력해주세요."
         />
+        <span>{errors?.firstname?.message as string}</span>
         <input
-          {...register("lastname", { required: true })}
+          {...register("lastname", { required: "lastname을 입력해주세요." })}
           placeholder="lastname을 입력해주세요."
         />
+        <span>{errors?.lastname?.message as string}</span>
         <input
-          {...register("username", { required: true, minLength: 3 })}
+          {...register("username", {
+            required: "username을 입력해주세요.",
+            minLength: 3,
+          })}
           placeholder="username을 입력해주세요."
         />
+        <span>{errors?.username?.message as string}</span>
         <input
-          {...register("password", { required: true, minLength: 10 })}
-          placeholder="password을 입력해주세요."
-        />
-        <input
-          {...register("password1", {
-            required: true,
-            minLength: { value: 5, message: "Your password is too short!" },
+          {...register("password", {
+            required: "password를 입력해주세요",
+            minLength: { value: 5, message: "5자 이상으로 설정해주세요" },
           })}
-          placeholder="password1을 입력해주세요."
+          placeholder="password를 입력해주세요."
         />
+        <span>{errors?.password?.message as string}</span>
+        <input
+          {...register("password_check", {
+            required: "password를 한번 더 입력해주세요",
+            minLength: { value: 5, message: "5자 이상으로 설정해주세요" },
+          })}
+          placeholder="password를 입력해주세요."
+        />
+        <span>{errors?.password_check?.message as string}</span>
         <button>추가</button>
       </form>
     </div>
