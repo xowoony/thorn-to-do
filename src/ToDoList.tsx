@@ -66,7 +66,13 @@ function ToDoList() {
         onSubmit={handleSubmit(onValid)}
       >
         <input
-          {...register("email", { required: true })}
+          {...register("email", {
+            required: true,
+            pattern: {
+              value: /^[A-Za-z0-9._%+-]+@naver.com$/,
+              message: "naver.com 주소만 허용됩니다.",
+            },
+          })}
           placeholder="email을 입력해주세요."
         />
         <input
