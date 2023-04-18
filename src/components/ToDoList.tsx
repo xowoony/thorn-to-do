@@ -1,31 +1,91 @@
+import { link } from "fs";
 import { useForm } from "react-hook-form";
+import {
+  atom,
+  useRecoilState,
+  useRecoilValue,
+  useSetRecoilState,
+} from "recoil";
+
+// 4. 이제 atom의 type이 ToDo의 배열임을 알려주도록 하자.
+// atom<IToDo[]> 를 작성해준다.
+const toDoState = atom<IToDo[]>({
+  key: "toDo",
+  default: [],
+});
+
+// 3. 타입스크립트에게 toDo가 어떻게 생겼는지 알려주기 위한 인터페이스
+// toDoState는 toDo들의 배열이라는 것을 알려주도록 하겠다.
+// category는 'DONE', 'DOING', 'TODO'만 받을 수 있다고 알려주도록 한다.
+// 이제 ToDo를 만들면 모든 string이 아닌, 명시된 3개 중 하나의 string만을 가져야 한다.
+interface IToDo {
+  text: string;
+  // 9. id도 만들어 줌
+  id: number;
+  category: "TODO" | "DOING" | "DONE";
+}
 
 interface IForm {
   toDo: string;
 }
 
 function ToDoList() {
+  // 5. 이제 타입스크립트는 우리의 toDos가 IToDo 객체로 이뤄진 배열임을 알게되었다.
+  const [toDos, setToDos] = useRecoilState(toDoState);
   const { register, handleSubmit, setValue } = useForm<IForm>();
-
-  const onSubmit = (data: IForm) => {
-    console.log("add to do", data.toDo);
-    setValue("toDo", ""); // submit 되면 비워짐
+  // 8. data => {toDo} 로 바꿔준다.
+  const handleValid = ({ toDo }: IForm) => {
+    // 7. 그리고 여기서는 state를 바꿔줄 것이다.
+    // setToDos 함수는 두개의 동작을 할 수 있다.
+    // state를 직접적으로 설정해 줄 수도 있고, 아니면 다른 함수를 받을 수도 있다.
+    // () 안에 함수를 쓴다면, 함수의 리턴값이 새로운 state가 될 것이다.
+    // 이전의 state를 oldToDos로 받아서 배열을 반환해줄 것이다.
+    // 그렇게 되면 이 배열은 oldToDos의 모든 요소를 가지게 된다.
+    // 보다시피 oldToDos는 배열이다.
+    // setToDos((oldToDos) => [oldToDos]); 이런 방식으로 하면 배열안에 배열이 들어가버린 꼴이 되므로 안되고
+    // 내가 원하는 건 oldToDo의 요소들이 들어있는 배열을 반환해야 하므로
+    // setToDos((oldToDos) => [...oldToDos]); 로 써준다. 이것은 배열안의 요소를 반환하게 된다.
+    // 지금까지를 보면 단순히 oldToDo를 받아서 oldToDo를 반환한다.
+    // 내가 해야 할 것은 새로운 ToDo를 넣어주는 것이다.
+    // 따라서 안에 객체를 만들고
+    // 우리의 데이터는 data.toDo에 있고, data는 react-hook-form에서 넘어온다.
+    // 그리고 이 data.toDo는 밑에 있는 input에서 온 것이다.
+    // {text:toDo} 를 써주면서 이제 text를 사용한다고 말해 줄 것이다.
+    // 새로운 ToDo의 text는 toDo로부터 오는 것이다.
+    // 그리고 카테고리도 작성해준다.
+    // 모든 ToDo를 TODO로부터 시작할 것이기 때문에 TODO로 적어준다.
+    setToDos((oldToDos) => [
+      // 10. id를 써준다.
+      { text: toDo, category: "TODO", id: Date.now() },
+      ...oldToDos,
+    ]);
+    setValue("toDo", "");
+    // 1. setToDos(["hello"]) 이렇게 "hello"를 넣은 배열을 넣을려고 한다면
+    // 2. 타입스크립트에서는 ToDos가 항상 빈 배열이어야 하기 때문에 이 동작은 허용되지 않는다.
   };
 
+  // 6. 일단 여기서 state를 console.log 해보도록 하자.
+  console.log(toDos);
+
+  // 5. 이제 하고자 하는 것은 폼이 제출되고 데이터가 모두 유효하다면,
+  // state(상태)를 바꿀 것이다.
   return (
     <div>
-      {/* handleSubmit 함수를 사용할 때는
-      첫번째 매개변수로 데이터가 유효할 때 호출되는 다른 함수를 받는다.
-      두번째 매개변수로는 데이터가 유효하지 않을때 호출될 함수를 넣으면 된다.*/}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <h1>Thorn To Do</h1>
+      <hr />
+      <form onSubmit={handleSubmit(handleValid)}>
         <input
           {...register("toDo", {
             required: "please write a to do",
           })}
           placeholder="오늘 해야할 일을 입력하세요"
         />
-        <button>추가</button>
+        <button>add</button>
       </form>
+      {/* 11. 각각의 ToDo에 대해 li를 반환할 것이고, key는 toDo.id를 사용 */}
+      <ul>
+         {toDos.map(toDo => <li key={toDo.id}>{toDo.text}</li>)}
+      </ul>
     </div>
   );
 }
