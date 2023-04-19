@@ -7,7 +7,14 @@
 import { IToDo } from "./atoms";
 
 function ToDo({ text }: IToDo) {
-  return <li>{text}</li>;
+  return (
+    <li>
+      <span>{text}</span>
+      <button>TODO</button>
+      <button>Doing</button>
+      <button>Done</button>
+    </li>
+  );
 }
 
 export default ToDo;
