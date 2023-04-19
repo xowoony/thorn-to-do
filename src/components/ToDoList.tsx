@@ -7,7 +7,7 @@ import ToDo from "./ToDo";
 function ToDoList() {
   // 여기서는 useRecoilValue 값만 반환해주고 modifier 함수는 반환할 필요 없음
   const toDos = useRecoilValue(toDoState);
-
+  console.log(toDos);
   return (
     <div>
       <h1>Thorn To Do</h1>
