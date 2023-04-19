@@ -6,13 +6,13 @@
 
 import { IToDo } from "./atoms";
 
-function ToDo({ text }: IToDo) {
+function ToDo({ text, category }: IToDo) {
   return (
     <li>
       <span>{text}</span>
-      <button>TODO</button>
-      <button>Doing</button>
-      <button>Done</button>
+      {category !== "TODO" && <button>TODO</button>}
+      {category !== "DOING" && <button>DOING</button>}
+      {category !== "DONE" && <button>DONE</button>}
     </li>
   );
 }
