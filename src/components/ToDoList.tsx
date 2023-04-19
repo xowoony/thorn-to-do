@@ -18,6 +18,7 @@ function ToDoList() {
         {toDos.map((toDo) => (
           // li가 있던 자리 - ToDo.tsx로 감
           // {...toDo} 이렇게 써줌으로 인해 prop으로 text, category, 등등 필수적으로 써주어야 하는 prop들을 써줄 노고가 줄어듦
+          // ToDoList는 ToDo를 렌더링 하고 있고 이 ToDo는 모든 props를 받고 있다.
           <ToDo key={toDo.id}{...toDo}/>
         ))}
       </ul>
