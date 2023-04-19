@@ -7,12 +7,23 @@
 import { IToDo } from "./atoms";
 
 function ToDo({ text, category }: IToDo) {
+  // newCategory가 IToDo의 category 항목이라는 것을 알려줌
+  const onClick = (event:React.MouseEvent<HTMLButtonElement>) => {
+    console.log("i wanna to ", event.currentTarget.name);
+  };
+
   return (
     <li>
       <span>{text}</span>
-      {category !== "TODO" && <button>TODO</button>}
-      {category !== "DOING" && <button>DOING</button>}
-      {category !== "DONE" && <button>DONE</button>}
+      {category !== "TODO" && (
+        <button name="TODO" onClick={onClick}>TODO</button>
+      )}
+      {category !== "DOING" && (
+        <button name="DOING" onClick={onClick}>DOING</button>
+      )}
+      {category !== "DONE" && (
+        <button name="DONE" onClick={onClick}>DONE</button>
+      )}
     </li>
   );
 }
