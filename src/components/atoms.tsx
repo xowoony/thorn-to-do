@@ -1,4 +1,4 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
 export interface IToDo {
   text: string;
@@ -6,8 +6,16 @@ export interface IToDo {
   category: "TODO" | "DOING" | "DONE";
 }
 
-// CreateToDo에서 이 toDoState를 사용할 수 있게 됨.
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [],
+});
+
+// selector
+export const toDoSelector = selector({
+  key: "toDoSelector",
+  get: ({ get }) => {
+    const toDos = get(toDoState)
+    return toDos.length;
+  },
 });

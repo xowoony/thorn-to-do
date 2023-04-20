@@ -1,12 +1,13 @@
 import { useRecoilValue } from "recoil";
 import CreateToDo from "./CreateToDo";
-import { toDoState } from "./atoms";
+import { toDoSelector, toDoState } from "./atoms";
 import ToDo from "./ToDo";
-
 
 function ToDoList() {
   // 여기서는 useRecoilValue 값만 반환해주고 modifier 함수는 반환할 필요 없음
   const toDos = useRecoilValue(toDoState);
+  const selectorOutput = useRecoilValue(toDoSelector);
+  console.log(selectorOutput);
   console.log(toDos);
   return (
     <div>
@@ -19,7 +20,7 @@ function ToDoList() {
           // li가 있던 자리 - ToDo.tsx로 감
           // {...toDo} 이렇게 써줌으로 인해 prop으로 text, category, 등등 필수적으로 써주어야 하는 prop들을 써줄 노고가 줄어듦
           // ToDoList는 ToDo를 렌더링 하고 있고 이 ToDo는 모든 props를 받고 있다.
-          <ToDo key={toDo.id}{...toDo}/>
+          <ToDo key={toDo.id} {...toDo} />
         ))}
       </ul>
     </div>
