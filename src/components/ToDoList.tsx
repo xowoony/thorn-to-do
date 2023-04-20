@@ -1,7 +1,7 @@
 import { useRecoilValue } from "recoil";
 import CreateToDo from "./CreateToDo";
-import { toDoSelector, toDoState } from "./atoms";
-import ToDo from "./ToDo";
+import { toDoSelector } from "./atoms";
+
 
 function ToDoList() {
    // 배열 안의 배열을 선택하려면 이렇게 배열을 열고 순서대로 이름을 지정하면 된다.
@@ -12,27 +12,7 @@ function ToDoList() {
       <h1>Thorn To Do</h1>
       <hr />
       <CreateToDo />
-      <h2>TODO</h2>
-      <ul>
-        {toDo.map((toDo) => (
-          <ToDo key={toDo.id} {...toDo} />
-        ))}
-      </ul>
-      <hr />
-      <h2>DOING</h2>
-      <ul>
-        {doing.map((toDo) => (
-          <ToDo key={toDo.id} {...toDo} />
-        ))}
-      </ul>
-      <hr />
-      <h2>DONE</h2>
-      <ul>
-        {done.map((toDo) => (
-          <ToDo key={toDo.id} {...toDo} />
-        ))}
-      </ul>
-      <hr />
+     
     </div>
   );
 }
