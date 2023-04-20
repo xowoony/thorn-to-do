@@ -4,12 +4,17 @@ import { toDoSelector } from "./atoms";
 
 function ToDoList() {
   const [toDo, doing, done] = useRecoilValue(toDoSelector);
+  // 이 함수는 select의 value를 알려준다.
+  const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
+  // 카테고리를 바꿀 때 어떤 일이 일어나는지 콘솔에 찍어보자
+    console.log(event.currentTarget.value);
+  };
 
   return (
     <div>
       <h1>Thorn To Do</h1>
       <hr />
-      <select>
+      <select onInput={onInput}>
         <option value="TODO">TODO</option>
         <option value="DOING">DOING</option>
         <option value="DONE">DONE</option>
