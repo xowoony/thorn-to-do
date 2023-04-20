@@ -4,25 +4,35 @@ import { toDoSelector, toDoState } from "./atoms";
 import ToDo from "./ToDo";
 
 function ToDoList() {
-  // 여기서는 useRecoilValue 값만 반환해주고 modifier 함수는 반환할 필요 없음
-  const toDos = useRecoilValue(toDoState);
-  const selectorOutput = useRecoilValue(toDoSelector);
-  console.log(selectorOutput);
-  console.log(toDos);
+   // 배열 안의 배열을 선택하려면 이렇게 배열을 열고 순서대로 이름을 지정하면 된다.
+  const [toDo, doing, done] = useRecoilValue(toDoSelector);
+
   return (
     <div>
       <h1>Thorn To Do</h1>
       <hr />
-      {/* form 태그가 있던 자리 - CreateToDo.tsx로 따로 빼줬음*/}
       <CreateToDo />
+      <h2>TODO</h2>
       <ul>
-        {toDos.map((toDo) => (
-          // li가 있던 자리 - ToDo.tsx로 감
-          // {...toDo} 이렇게 써줌으로 인해 prop으로 text, category, 등등 필수적으로 써주어야 하는 prop들을 써줄 노고가 줄어듦
-          // ToDoList는 ToDo를 렌더링 하고 있고 이 ToDo는 모든 props를 받고 있다.
+        {toDo.map((toDo) => (
           <ToDo key={toDo.id} {...toDo} />
         ))}
       </ul>
+      <hr />
+      <h2>DOING</h2>
+      <ul>
+        {doing.map((toDo) => (
+          <ToDo key={toDo.id} {...toDo} />
+        ))}
+      </ul>
+      <hr />
+      <h2>DONE</h2>
+      <ul>
+        {done.map((toDo) => (
+          <ToDo key={toDo.id} {...toDo} />
+        ))}
+      </ul>
+      <hr />
     </div>
   );
 }
