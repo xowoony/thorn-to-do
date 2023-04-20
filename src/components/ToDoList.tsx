@@ -1,18 +1,14 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import CreateToDo from "./CreateToDo";
 import { categoryState, toDoSelector } from "./atoms";
+import ToDo from "./ToDo";
 
 function ToDoList() {
-  const [toDo, doing, done] = useRecoilValue(toDoSelector);
-  // useRecoilState 사용하기
- // input이 변할 때, setCategory를 호출해 줄 것이다.
-  const [category, setCategory] = useRecoilState(categoryState)
+  const toDos = useRecoilValue(toDoSelector);
+  const [category, setCategory] = useRecoilState(categoryState);
   const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
     setCategory(event.currentTarget.value);
   };
-
-  // 카테고리를 콘솔에 찍어보자
-  console.log(category);
 
   return (
     <div>
@@ -24,6 +20,9 @@ function ToDoList() {
         <option value="DONE">DONE</option>
       </select>
       <CreateToDo />
+      {toDos?.map((toDo) => (
+        <ToDo key={toDo.id} {...toDo} />
+      ))}
     </div>
   );
 }
