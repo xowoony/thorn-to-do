@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/thorn-to-do/static/js/main.2ff7491e.js",
+    "index.html": "/thorn-to-do/index.html",
+    "main.2ff7491e.js.map": "/thorn-to-do/static/js/main.2ff7491e.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.2ff7491e.js"
+  ]
+}
