@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import CreateToDo from "./CreateToDo";
-import { categoryState, toDoSelector } from "./atoms";
+import { Categories, categoryState, toDoSelector } from "./atoms";
 import ToDo from "./ToDo";
 
 function ToDoList() {
@@ -10,14 +10,16 @@ function ToDoList() {
     setCategory(event.currentTarget.value as any);
   };
 
+  console.log(toDos);
+
   return (
     <div>
       <h1>Thorn To Do</h1>
       <hr />
       <select value={category} onInput={onInput}>
-        <option value="TODO">TODO</option>
-        <option value="DOING">DOING</option>
-        <option value="DONE">DONE</option>
+        <option value={Categories.TODO}>TODO</option>
+        <option value={Categories.DOING}>DOING</option>
+        <option value={Categories.DONE}>DONE</option>
       </select>
       <CreateToDo />
       {toDos?.map((toDo) => (
