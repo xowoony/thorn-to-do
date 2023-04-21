@@ -25,7 +25,7 @@ const Hr = styled.hr`
 `;
 
 const Select = styled.select`
-  width: 22rem;
+  width: 24rem;
   height: 3rem;
   border: 0.1rem solid rgb(94 213 137);
   padding: 1rem;

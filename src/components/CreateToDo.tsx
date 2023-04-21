@@ -5,13 +5,25 @@ import styled from "styled-components";
 
 //css
 const Input = styled.input`
-  width: 18rem;
-  height: 3rem;
-  border-radius: 0.5rem;
-  background-color: rgba(52, 52, 52, 0);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.86);
-  margin-left: 2.3rem;
+    padding: 1rem;
+    width: 89.5%;
+    height: 3rem;
+    background-color: rgba(52, 52, 52, 0);
+    border: 0.1rem solid rgb(94, 213, 137);
 `;
+
+const Button = styled.button`
+  color:rgb(255,255,255);
+  background-color: rgb(94, 213, 137);
+  border: 0.1rem solid rgb(94, 213, 137);
+  border-style: none;
+  height: 3rem;
+  width: 2.5rem;
+`;
+
+const Form = styled.form`
+  width: 24rem;
+`
 
 interface IForm {
   toDo: string;
@@ -32,15 +44,15 @@ function CreateToDo() {
     setValue("toDo", "");
   };
   return (
-    <form onSubmit={handleSubmit(handleValid)}>
+    <Form onSubmit={handleSubmit(handleValid)}>
       <Input
         {...register("toDo", {
           required: "please write a to do",
         })}
         placeholder="오늘 해야할 일을 입력하세요"
       />
-      <button>add</button>
-    </form>
+      <Button>+</Button>
+    </Form>
   );
 }
 
