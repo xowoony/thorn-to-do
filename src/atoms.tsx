@@ -29,6 +29,8 @@ export const toDoState = atom<IToDo[]>({
   default: [],
 });
 
+
+
 // selector
 // 이제 atom에서 값을 받아오지 않게되고 selector에서 값을 받아오게 된다.
 // 그리고 selector는 atom을 받아서 그 atom을 변형하는 것이다.
