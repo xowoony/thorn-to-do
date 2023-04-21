@@ -5,9 +5,12 @@ export interface IToDo {
   id: number;
   category: "TODO" | "DOING" | "DONE";
 }
+ // type
+ type categories = "TODO" | "DOING" | "DONE";
+
 
 // categoryState
-export const categoryState = atom({
+export const categoryState = atom<categories>({
   key: "category",
   default: "TODO",
 });
