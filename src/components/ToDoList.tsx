@@ -1,11 +1,39 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import CreateToDo from "./CreateToDo";
-import {
-  Categories,
-  categoryState,
-  toDoSelector,
-} from "../atoms";
+import { Categories, categoryState, toDoSelector } from "../atoms";
 import ToDo from "./ToDo";
+import styled from "styled-components";
+
+// css
+const Container = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 5rem;
+`;
+
+const Title = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #19ce60;
+  font-family: 'Prompt', sans-serif;
+`;
+
+const Hr = styled.hr`
+  width: 25rem;
+`;
+
+const Select = styled.select`
+  width: 22rem;
+  height: 3rem;
+  border: 0.1rem solid rgb(94 213 137);
+  padding: 1rem;
+  background-color: rgb(255 255 255 / 0%);
+  color: rgb(107 107 107);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+`;
 
 function ToDoList() {
   const toDos = useRecoilValue(toDoSelector);
@@ -15,21 +43,20 @@ function ToDoList() {
     setCategory(event.currentTarget.value as any);
   };
 
-
   return (
-    <div>
-      <h1>Thorn To Do</h1>
-      <hr />
-      <select value={category} onInput={onInput}>
+    <Container>
+      <Title>THORN TO DO</Title>
+      <Hr />
+      <Select value={category} onInput={onInput}>
         <option value={Categories.TODO}>TODO</option>
         <option value={Categories.DOING}>DOING</option>
         <option value={Categories.DONE}>DONE</option>
-      </select>
+      </Select>
       <CreateToDo />
       {toDos?.map((toDo) => (
         <ToDo key={toDo.id} {...toDo} />
       ))}
-    </div>
+    </Container>
   );
 }
 
