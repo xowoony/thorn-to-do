@@ -4,19 +4,35 @@ import styled from "styled-components";
 
 // css
 const List = styled.li`
-    margin-top: 2rem;
+    margin-top: 1rem;
     list-style: none;
-    background-color: rgb(203, 205, 202);
+    background-color: rgb(229 219 127 / 35%);
     width: 24rem;
-    padding: 2rem;
-    border: 0.1rem solid #f39b9b;
+    border: 0.1rem solid rgb(228 179 0 / 30%);
+  display: flex;
+  flex-direction: row;
 `;
 
-const Text = styled.span`
-  
-`
+const TextContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-left: 1.5rem;
+`;
 
+const Text = styled.span``;
 
+const ButtonContainer = styled.div`
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: auto;
+  height: 100%;
+`;
+
+const Button = styled.button``;
 
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);
@@ -38,22 +54,26 @@ function ToDo({ text, category, id }: IToDo) {
 
   return (
     <List>
-      <Text>{text}</Text>
-      {category !== Categories.TODO && (
-        <button name={Categories.TODO} onClick={onClick}>
-          TODO
-        </button>
-      )}
-      {category !== Categories.DOING && (
-        <button name={Categories.DOING} onClick={onClick}>
-          DOING
-        </button>
-      )}
-      {category !== Categories.DONE && (
-        <button name={Categories.DONE} onClick={onClick}>
-          DONE
-        </button>
-      )}
+      <TextContainer>
+        <Text>{text}</Text>
+      </TextContainer>
+      <ButtonContainer>
+        {category !== Categories.TODO && (
+          <Button name={Categories.TODO} onClick={onClick}>
+            TODO
+          </Button>
+        )}
+        {category !== Categories.DOING && (
+          <Button name={Categories.DOING} onClick={onClick}>
+            DOING
+          </Button>
+        )}
+        {category !== Categories.DONE && (
+          <Button name={Categories.DONE} onClick={onClick}>
+            DONE
+          </Button>
+        )}
+      </ButtonContainer>
     </List>
   );
 }

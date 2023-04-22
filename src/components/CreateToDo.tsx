@@ -1,19 +1,19 @@
 import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { categoryState, toDoState } from "../atoms";
+import { Categories, categoryState, toDoState } from "../atoms";
 import styled from "styled-components";
 
 //css
 const Input = styled.input`
-    padding: 1rem;
-    width: 89.5%;
-    height: 3rem;
-    background-color: rgba(52, 52, 52, 0);
-    border: 0.1rem solid rgb(94, 213, 137);
+  padding: 1rem;
+  width: 89.5%;
+  height: 3rem;
+  background-color: rgba(52, 52, 52, 0);
+  border: 0.1rem solid rgb(94, 213, 137);
 `;
 
 const Button = styled.button`
-  color:rgb(255,255,255);
+  color: rgb(255, 255, 255);
   background-color: rgb(94, 213, 137);
   border: 0.1rem solid rgb(94, 213, 137);
   border-style: none;
@@ -23,7 +23,14 @@ const Button = styled.button`
 
 const Form = styled.form`
   width: 24rem;
-`
+`;
+
+const H1 = styled.h1`
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  font-size: 1.2rem;
+`;
 
 interface IForm {
   toDo: string;
@@ -52,6 +59,8 @@ function CreateToDo() {
         placeholder="오늘 해야할 일을 입력하세요"
       />
       <Button>+</Button>
+      <hr />
+      <h1>{category}</h1>
     </Form>
   );
 }
