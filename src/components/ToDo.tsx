@@ -12,6 +12,11 @@ const List = styled.li`
   border: 0.1rem solid rgb(228 179 0 / 30%);
   display: flex;
   flex-direction: row;
+  @media screen and (max-width: 1090px) {
+    width: 19rem;
+    height: 3rem;
+    font-size: 0.7rem;
+  }
 `;
 
 const TextContainer = styled.div`
