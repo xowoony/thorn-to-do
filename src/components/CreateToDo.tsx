@@ -32,12 +32,16 @@ const Form = styled.form`
   }
 `;
 
+const Hr = styled.hr`
+  margin-top: 1rem;
+`;
+
 const H1 = styled.h1`
-    font-size: 1.2rem;
-    display: flex;
-    justify-content: center;
-    margin-top: 1.3rem;
-    color: #beac0b;
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: center;
+  margin-top: 1.3rem;
+  color: #beac0b;
 `;
 
 interface IForm {
@@ -67,7 +71,7 @@ function CreateToDo() {
         placeholder="오늘 해야할 일을 입력하세요"
       />
       <Button>+</Button>
-      <hr />
+      <Hr />
       <H1>{category}</H1>
     </Form>
   );
