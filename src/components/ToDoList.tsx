@@ -27,9 +27,9 @@ const Title = styled.h1`
 `;
 
 const Hr = styled.hr`
-  width: 25rem;
+  width: 24rem;
   @media screen and (max-width: 1090px) {
-    width: 18rem;
+    width: 19rem;
   }
 `;
 
