@@ -11,6 +11,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 5rem;
+  margin-bottom: 5rem;
   @media screen and (max-width: 1090px) {
 
   }
