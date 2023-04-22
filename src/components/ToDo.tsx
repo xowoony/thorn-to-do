@@ -40,7 +40,7 @@ const Button = styled.button`
   cursor: pointer;
   height: 100%;
   &:hover {
-    background-color: orange;
+    background-color: #ffa60054;
   }
 `;
 
