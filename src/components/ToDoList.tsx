@@ -11,17 +11,26 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   margin-top: 5rem;
+  @media screen and (max-width: 1090px) {
+
+  }
 `;
 
 const Title = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   color: #19ce60;
-  font-family: 'Prompt', sans-serif;
+  font-family: "Prompt", sans-serif;
+  @media screen and (max-width: 1090px) {
+    font-size: 2rem;
+  }
 `;
 
 const Hr = styled.hr`
   width: 25rem;
+  @media screen and (max-width: 1090px) {
+    width: 18rem;
+  }
 `;
 
 const Select = styled.select`
@@ -33,6 +42,10 @@ const Select = styled.select`
   color: rgb(107 107 107);
   margin-top: 1rem;
   margin-bottom: 1rem;
+  @media screen and (max-width: 1090px) {
+    width: 19rem;
+    height: 3rem;
+  }
 `;
 
 function ToDoList() {

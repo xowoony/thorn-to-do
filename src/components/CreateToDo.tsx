@@ -10,6 +10,10 @@ const Input = styled.input`
   height: 3rem;
   background-color: rgba(52, 52, 52, 0);
   border: 0.1rem solid rgb(94, 213, 137);
+  @media screen and (max-width: 1090px) {
+    width: 86.8%;
+    height: 3rem;
+  }
 `;
 
 const Button = styled.button`
@@ -23,6 +27,9 @@ const Button = styled.button`
 
 const Form = styled.form`
   width: 24rem;
+  @media screen and (max-width: 1090px) {
+    width: 19rem;
+  }
 `;
 
 const H1 = styled.h1`
