@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/thorn-to-do/static/js/main.bdf0592b.js",
+    "main.js": "/thorn-to-do/static/js/main.ea3e97ed.js",
     "index.html": "/thorn-to-do/index.html",
-    "main.bdf0592b.js.map": "/thorn-to-do/static/js/main.bdf0592b.js.map"
+    "main.ea3e97ed.js.map": "/thorn-to-do/static/js/main.ea3e97ed.js.map"
   },
   "entrypoints": [
-    "static/js/main.bdf0592b.js"
+    "static/js/main.ea3e97ed.js"
   ]
 }
