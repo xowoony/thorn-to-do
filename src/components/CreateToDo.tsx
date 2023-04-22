@@ -8,8 +8,12 @@ const Input = styled.input`
   padding: 1rem;
   width: 89.5%;
   height: 3rem;
-  background-color: rgba(52, 52, 52, 0);
+  line-height: 3rem;
+  /* background-color: rgba(52, 52, 52, 0); */
   border: 0.1rem solid rgb(94, 213, 137);
+  &:focus {
+    outline: none;
+  }
   @media screen and (max-width: 1090px) {
     width: 86.8%;
     height: 3rem;
@@ -69,6 +73,7 @@ function CreateToDo() {
           required: "please write a to do",
         })}
         placeholder="오늘 해야할 일을 입력하세요"
+        autoComplete="off"
       />
       <Button>+</Button>
       <Hr />

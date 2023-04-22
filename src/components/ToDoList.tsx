@@ -38,7 +38,7 @@ const Select = styled.select`
   height: 3rem;
   border: 0.1rem solid rgb(94 213 137);
   padding: 1rem;
-  background-color: rgb(255 255 255 / 0%);
+  /* background-color: rgb(255 255 255 / 0%); */
   color: rgb(107 107 107);
   margin-top: 1rem;
   margin-bottom: 1rem;
