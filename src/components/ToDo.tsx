@@ -4,11 +4,12 @@ import styled from "styled-components";
 
 // css
 const List = styled.li`
-    margin-top: 1rem;
-    list-style: none;
-    background-color: rgb(229 219 127 / 35%);
-    width: 24rem;
-    border: 0.1rem solid rgb(228 179 0 / 30%);
+  height: 4rem;
+  margin-top: 1rem;
+  list-style: none;
+  background-color: rgb(229 219 127 / 35%);
+  width: 24rem;
+  border: 0.1rem solid rgb(228 179 0 / 30%);
   display: flex;
   flex-direction: row;
 `;
@@ -32,7 +33,16 @@ const ButtonContainer = styled.div`
   height: 100%;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  border: none;
+  color: #000000a1;
+  background-color: #9e9e9e29;
+  cursor: pointer;
+  height: 100%;
+  &:hover {
+    background-color: orange;
+  }
+`;
 
 function ToDo({ text, category, id }: IToDo) {
   const setToDos = useSetRecoilState(toDoState);

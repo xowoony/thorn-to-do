@@ -26,10 +26,11 @@ const Form = styled.form`
 `;
 
 const H1 = styled.h1`
-  display: flex;
-  justify-content: center;
-  margin-top: 1rem;
-  font-size: 1.2rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    margin-top: 1.3rem;
+    color: #beac0b;
 `;
 
 interface IForm {
@@ -60,7 +61,7 @@ function CreateToDo() {
       />
       <Button>+</Button>
       <hr />
-      <h1>{category}</h1>
+      <H1>{category}</H1>
     </Form>
   );
 }
