@@ -1,6 +1,7 @@
 import { useSetRecoilState } from "recoil";
 import { Categories, IToDo, toDoState } from "../atoms";
 import styled from "styled-components";
+import { useState } from "react";
 
 // css
 const List = styled.li`
@@ -97,7 +98,8 @@ function ToDo({ text, category, id }: IToDo) {
           </Button>
         )}
       </ButtonContainer>
-      <button onClick={deleteToDo}>delete</button>
+
+      <button onClick={deleteToDo}>DELETE</button>
     </List>
   );
 }

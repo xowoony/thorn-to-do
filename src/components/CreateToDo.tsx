@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Categories, categoryState, toDoState } from "../atoms";
 import styled from "styled-components";
+import { useState } from "react";
 
 //css
 const Input = styled.input`
@@ -48,11 +49,14 @@ const H1 = styled.h1`
   color: #beac0b;
 `;
 
+
+
 interface IForm {
   toDo: string;
 }
 
 function CreateToDo() {
+
   // toDos는 필요없다.
   // 수정말 할 수 있으면 되기 때문에 useSetRecoilState로 setToDos를 정의
   // toDoState를 ataom으로 부터 불러오게됨.
@@ -67,7 +71,6 @@ function CreateToDo() {
     setValue("toDo", "");
   };
 
-
   return (
     <Form onSubmit={handleSubmit(handleValid)}>
       <Input
@@ -80,6 +83,7 @@ function CreateToDo() {
       <Button>+</Button>
       <Hr />
       <H1>{category}</H1>
+     
     </Form>
   );
 }
