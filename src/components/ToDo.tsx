@@ -50,6 +50,14 @@ const Button = styled.button`
 `;
 
 function ToDo({ text, category, id }: IToDo) {
+  // 삭제버튼
+  const deleteToDo = () => {
+    setToDos((oldToDos) => {
+      const newToDos = oldToDos.filter((toDo) => toDo.id !== id);
+      return newToDos;
+    });
+  };
+
   const setToDos = useSetRecoilState(toDoState);
   const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     const {
@@ -89,6 +97,7 @@ function ToDo({ text, category, id }: IToDo) {
           </Button>
         )}
       </ButtonContainer>
+      <button onClick={deleteToDo}>delete</button>
     </List>
   );
 }
