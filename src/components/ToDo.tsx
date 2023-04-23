@@ -50,6 +50,16 @@ const Button = styled.button`
   }
 `;
 
+const DeleteButton = styled.button`
+  color: rgba(0, 0, 0, 0.63);
+  background-color: rgba(158, 158, 158, 0.16);
+  border: none;
+  cursor: pointer;
+  &:hover{
+    background-color: #ff590052;
+  }
+`;
+
 function ToDo({ text, category, id }: IToDo) {
   // 삭제버튼
   const deleteToDo = () => {
@@ -99,7 +109,7 @@ function ToDo({ text, category, id }: IToDo) {
         )}
       </ButtonContainer>
 
-      <button onClick={deleteToDo}>DELETE</button>
+      <DeleteButton onClick={deleteToDo}>DELETE</DeleteButton>
     </List>
   );
 }
