@@ -1,5 +1,5 @@
 import { atom, selector } from "recoil";
-
+import { recoilPersist } from 'recoil-persist'
 
 
 // enum
@@ -23,11 +23,18 @@ export const categoryState = atom<Categories>({
   default: Categories.TODO,
 });
 
+
+// recoil persist - 로컬스토리지 저장
+const { persistAtom } = recoilPersist()
+
 // toDoState
 export const toDoState = atom<IToDo[]>({
   key: "toDo",
   default: [],
+  effects_UNSTABLE: [persistAtom],
 });
+
+
 
 
 
