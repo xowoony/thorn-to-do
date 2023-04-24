@@ -72,6 +72,7 @@ const DeleteButton = styled.button`
   }
   @media screen and (max-width: 1090px) {
     font-size: 0.4rem;
+    padding: 0.45rem;
   }
 `;
 
