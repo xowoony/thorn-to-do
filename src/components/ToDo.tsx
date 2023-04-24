@@ -31,32 +31,47 @@ const TextContainer = styled.div`
 const Text = styled.span``;
 
 const ButtonContainer = styled.div`
-  width: 25%;
+  width: 16%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   margin-left: auto;
   height: 100%;
+
 `;
 
 const Button = styled.button`
   border: none;
   color: #000000a1;
-  background-color: #9e9e9e29;
+  /* background-color: #9e9e9e29; */
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem;
+  background-color: rgba(255, 166, 0, 0.33);
   cursor: pointer;
   height: 100%;
   &:hover {
-    background-color: #ffa60054;
+    background-color: #d3d3d352;
+  }
+  @media screen and (max-width: 1090px) {
+    font-size: 0.4rem;
   }
 `;
 
 const DeleteButton = styled.button`
   color: rgba(0, 0, 0, 0.63);
-  background-color: rgba(158, 158, 158, 0.16);
+  /* background-color: rgba(158, 158, 158, 0.16); */
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2rem;
+  background-color: #f2c174;
   border: none;
   cursor: pointer;
-  &:hover{
-    background-color: #ff590052;
+  &:hover {
+    background-color: #ec888866;
+  }
+  @media screen and (max-width: 1090px) {
+    font-size: 0.4rem;
   }
 `;
 
