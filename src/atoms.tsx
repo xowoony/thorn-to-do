@@ -1,12 +1,11 @@
 import { atom, selector } from "recoil";
-import { recoilPersist } from 'recoil-persist'
-
+import { recoilPersist } from "recoil-persist";
 
 // enum
 export enum Categories {
   "TODO" = "TODO",
   "DOING" = "DOING",
-  "DONE" = "DONE"
+  "DONE" = "DONE",
 }
 
 // interface
@@ -16,16 +15,14 @@ export interface IToDo {
   category: Categories;
 }
 
-
 // categoryState
 export const categoryState = atom<Categories>({
   key: "category",
   default: Categories.TODO,
 });
 
-
 // recoil persist - 로컬스토리지 저장
-const { persistAtom } = recoilPersist()
+const { persistAtom } = recoilPersist();
 
 // toDoState
 export const toDoState = atom<IToDo[]>({
@@ -33,10 +30,6 @@ export const toDoState = atom<IToDo[]>({
   default: [],
   effects_UNSTABLE: [persistAtom],
 });
-
-
-
-
 
 // selector
 // 이제 atom에서 값을 받아오지 않게되고 selector에서 값을 받아오게 된다.
@@ -48,6 +41,7 @@ export const toDoSelector = selector({
   get: ({ get }) => {
     const toDos = get(toDoState);
     const category = get(categoryState);
+    // 그 카테고리 인 toDo 메모만 걸러서 반환
     return toDos.filter((toDo) => toDo.category === category);
   },
 });
