@@ -10,7 +10,7 @@ const List = styled.li`
   list-style: none;
   background-color: rgb(229 219 127 / 35%);
   width: 24rem;
-  border: 0.1rem solid rgb(228 179 0 / 30%);
+  border: 0.0625rem solid rgba(228, 179, 0, 0.3);
   display: flex;
   flex-direction: row;
   @media screen and (max-width: 1090px) {
